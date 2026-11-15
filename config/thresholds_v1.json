@@ -1,0 +1,67 @@
+{
+  "version": "thresholds-v1.1",
+  "status": "prototype - not clinically validated",
+  "source": "Biomedical Research Report and Alert Threshold Specification (Ishika Vennayappillil, 8 Nov 2026). Items marked 'added by Data/AI Lead' are engineering guards, not part of that report.",
+
+  "baseline": {
+    "amber_z": 2.0,
+    "phases": {"calibrating_until_day": 7, "provisional_until_day": 21},
+    "min_mad": {"heart_rate": 1.0, "spo2": 0.5, "respiratory_rate": 0.5,
+                "systolic_bp": 2.0, "temperature_core": 0.1},
+    "min_change": {"heart_rate": 8, "respiratory_rate": 3, "systolic_bp": 10},
+    "min_samples": 5
+  },
+
+  "persistence": {
+    "acute_red_seconds": 15,
+    "acute_amber_minutes": 5,
+    "advisory_minutes": 5
+  },
+
+  "quality": {
+    "min_quality": 0.7,
+    "good_quality": 0.85,
+    "stale_after_minutes": 5,
+    "flatline_seconds": 60,
+    "flatline_min_readings": 3,
+    "max_jump_per_second": {"heart_rate": 40},
+    "isolated_spike": {"heart_rate": 40, "spo2": 8, "systolic_bp": 50, "respiratory_rate": 15},
+    "spike_max_gap_minutes": 10
+  },
+
+  "signals": {
+    "heart_rate": {"unit": "bpm", "valid": [30, 220], "amber_abs": [[111, 130]],
+                   "red_low": 40, "red_high": 131, "baseline_amber": true},
+    "spo2": {"unit": "%", "valid": [50, 100], "advisory_max": 94, "amber_abs": [[92, 93]],
+             "amber_drop_from_baseline": 4, "red_low": 91, "emergency_below": 85},
+    "respiratory_rate": {"unit": "breaths/min", "valid": [4, 60], "amber_abs": [[21, 24]],
+                         "red_low": 8, "red_high": 25, "baseline_amber": true},
+    "systolic_bp": {"unit": "mmHg", "valid": [50, 260], "amber_abs": [[91, 100]],
+                    "red_low": 90, "red_high": 220, "baseline_amber": true},
+    "temperature_core": {
+      "unit": "C", "valid": [30.0, 43.0], "advisory_above_baseline": 0.5,
+      "ground": {"amber_abs": [[35.1, 36.0], [38.1, 39.0]], "red_low": 35.0, "red_high": 39.1},
+      "inflight_from_day_8": {"amber_abs": [[36.1, 37.0], [38.6, 39.5]], "red_low": 36.0, "red_high": 39.6}
+    },
+    "skin_temp": {"unit": "C", "valid": [20, 42], "trend_only": true},
+    "hrv_rmssd": {"unit": "ms", "valid": [5, 250], "trend_only": true}
+  },
+
+  "multi_signal": {
+    "MS-01": {"amber_count": 2, "minutes": 10, "result": "red"},
+    "MS-02": {"rr_window_minutes": 5, "rr_min_z": 2.0, "result": "red"},
+    "MS-04": {"result": "red"},
+    "MS-05": {"news2_total_min": 5, "window_minutes": 5, "result": "red"}
+  },
+
+  "news2": {
+    "heart_rate": [[null, 40, 3], [41, 50, 1], [51, 90, 0], [91, 110, 1], [111, 130, 2], [131, null, 3]],
+    "respiratory_rate": [[null, 8, 3], [9, 11, 1], [12, 20, 0], [21, 24, 2], [25, null, 3]],
+    "spo2": [[null, 91, 3], [92, 93, 2], [94, 95, 1], [96, null, 0]],
+    "systolic_bp": [[null, 90, 3], [91, 100, 2], [101, 110, 1], [111, 219, 0], [220, null, 3]],
+    "temperature_core": {
+      "ground": [[null, 35.0, 3], [35.1, 36.0, 1], [36.1, 38.0, 0], [38.1, 39.0, 1], [39.1, null, 2]],
+      "inflight": [[null, 36.0, 3], [36.1, 37.0, 1], [37.1, 38.5, 0], [38.6, 39.5, 1], [39.6, null, 2]]
+    }
+  }
+}
