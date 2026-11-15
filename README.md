@@ -1,4 +1,4 @@
-# Astro Vitals — Space Health Pioneers
+# Astro Vitals by Space Health Pioneers
 **Explainable, On-Board Health Monitoring Software for Astronauts Beyond Earth Orbit**  
 *NASA Space Apps Challenge 2026*
 
