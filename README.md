@@ -1,9 +1,9 @@
-# Space Health Pioneers
+# Astro Vitals — Space Health Pioneers
 **Explainable, On-Board Health Monitoring Software for Astronauts Beyond Earth Orbit**  
 *NASA Space Apps Challenge 2026*
 
 ## Overview
-**Space Health Pioneers** is a rule-based, explainable biometric monitoring engine designed for deep-space missions where real-time medical support from Earth is delayed. Instead of relying on terrestrial medical cutoffs that trigger false alarms in microgravity, the system adapts to each astronaut's personal in-flight baseline and cross-references multiple physiological and environmental signals.
+**Astro Vitals** (developed by team **Space Health Pioneers**) is a rule-based, explainable biometric monitoring engine designed for deep-space missions where real-time medical support from Earth is delayed. Instead of relying on terrestrial medical cutoffs that trigger false alarms in microgravity, the system adapts to each astronaut's personal in-flight baseline and cross-references multiple physiological and environmental signals.
 
 ## Key Features
 * **Phased In-Flight Baselines:** Accounts for early microgravity adaptation (fluid shift, space motion sickness, and space anemia) across three phases: *Calibrating* (Days 1–7), *Provisional* (Days 8–21), and *Stable* (Day 22+).
@@ -25,4 +25,5 @@ pip install -r requirements.txt
 pytest
 python simulator.py
 ```
+
 
